@@ -2,18 +2,26 @@
 # Questo file viene importato da tutti i moduli del blog per i percorsi corretti
 
 from pathlib import Path
+import os
 
-# Directory di riferimento (file corrente -> dev -> news -> pages -> sito)
-DEV_DIR = Path(__file__).resolve().parent
-NEWS_DIR = DEV_DIR.parent           # .../pages/news
-PAGES_DIR = NEWS_DIR.parent         # .../pages
-BASE_DIR = PAGES_DIR.parent         # .../ (radice del sito)
+# Se l'utente lancia l'eseguibile dalla radice del sito (consigliato), usa CWD
+CWD = Path.cwd()
+if (CWD / "templates").exists() and (CWD / "pages").exists():
+	BASE_DIR = CWD
+else:
+	# Fallback: relativo al file (per esecuzione da sorgente)
+	DEV_DIR = Path(__file__).resolve().parent
+	NEWS_DIR_FALLBACK = DEV_DIR.parent           # .../pages/news
+	PAGES_DIR_FALLBACK = NEWS_DIR_FALLBACK.parent         # .../pages
+	BASE_DIR = PAGES_DIR_FALLBACK.parent         # .../ (radice del sito)
 
 # Percorsi principali
 TEMPLATES_DIR = BASE_DIR / "templates"
 MAIN_CSS = BASE_DIR / "main.css"
 ICONS_DIR = BASE_DIR / "icons"
 IMAGES_DIR = BASE_DIR / "immagini"
+PAGES_DIR = BASE_DIR / "pages"
+NEWS_DIR = PAGES_DIR / "news"
 PDF_DIR = NEWS_DIR / "pdf"         # Allegati PDF specifici del blog/news
 
 # Dati del blog/news
