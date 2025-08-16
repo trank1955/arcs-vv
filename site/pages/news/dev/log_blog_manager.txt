@@ -1,0 +1,68 @@
+[2025-08-11 21:14:53] Lista post aggiornata.
+[2025-08-13 08:04:27] Lista post aggiornata.
+[2025-08-13 08:43:58] Lista post aggiornata.
+[2025-08-13 08:53:40] Lista post aggiornata.
+[2025-08-13 08:53:50] news.json rigenerato con 0 post trovati in HTML.
+[2025-08-13 08:53:50] Lista post aggiornata.
+[2025-08-13 08:54:02] Lista post aggiornata.
+[2025-08-13 08:54:04] Backup creato: ..\news\backups\news_20250813_085404.json
+[2025-08-13 08:54:04] news.json rigenerato con 0 post trovati in HTML.
+[2025-08-13 08:54:04] Lista post aggiornata.
+[2025-08-13 08:54:07] Lista post aggiornata.
+[2025-08-13 09:05:02] Lista post aggiornata.
+[2025-08-13 09:05:24] Backup creato: ..\news\backups\news_20250813_090524.json
+[2025-08-13 09:05:24] File HTML eliminato: ..\news\per-non-perdere-la-nostra-umanità.html
+[2025-08-13 09:05:24] Post 'per-non-perdere-la-nostra-umanità' eliminato.
+[2025-08-13 09:05:24] Lista post aggiornata.
+[2025-08-13 09:05:51] Backup creato: ..\news\backups\news_20250813_090551.json
+[2025-08-13 09:05:51] File HTML eliminato: ..\news\per-non-perdere-la-nostra-umanita.html
+[2025-08-13 09:05:51] Post 'per-non-perdere-la-nostra-umanita' eliminato.
+[2025-08-13 09:05:51] Lista post aggiornata.
+[2025-08-13 09:05:58] Backup creato: ..\news\backups\news_20250813_090558.json
+[2025-08-13 09:05:58] File HTML eliminato: ..\news\fhsfhsfhsf.html
+[2025-08-13 09:05:58] Post 'fhsfhsfhsf' eliminato.
+[2025-08-13 09:05:58] Lista post aggiornata.
+[2025-08-13 09:06:05] Backup creato: ..\news\backups\news_20250813_090605.json
+[2025-08-13 09:06:05] File HTML eliminato: ..\news\workshop-solidarieta.html
+[2025-08-13 09:06:05] Post 'workshop-solidarieta' eliminato.
+[2025-08-13 09:06:05] Lista post aggiornata.
+[2025-08-13 09:06:14] Backup creato: ..\news\backups\news_20250813_090614.json
+[2025-08-13 09:06:14] File HTML eliminato: ..\news\prova-16.html
+[2025-08-13 09:06:14] Post 'prova-16' eliminato.
+[2025-08-13 09:06:14] Lista post aggiornata.
+[2025-08-13 09:06:19] Backup creato: ..\news\backups\news_20250813_090619.json
+[2025-08-13 09:06:19] File HTML eliminato: ..\news\prova-15.html
+[2025-08-13 09:06:19] Post 'prova-15' eliminato.
+[2025-08-13 09:06:19] Lista post aggiornata.
+[2025-08-13 09:06:23] Backup creato: ..\news\backups\news_20250813_090623.json
+[2025-08-13 09:06:23] File HTML eliminato: ..\news\prova-12.html
+[2025-08-13 09:06:23] Post 'prova-12' eliminato.
+[2025-08-13 09:06:23] Lista post aggiornata.
+[2025-08-13 09:07:19] Backup creato: ..\news\backups\news_20250813_090719.json
+[2025-08-13 09:07:19] Lista post aggiornata.
+[2025-08-13 09:07:39] Backup creato: ..\news\backups\news_20250813_090739.json
+[2025-08-13 09:07:39] news.json rigenerato con 12 post trovati in HTML.
+[2025-08-13 09:07:39] Lista post aggiornata.
+[2025-08-13 09:09:59] Backup creato: ..\news\backups\news_20250813_090959.json
+[2025-08-13 09:09:59] File HTML eliminato: ..\news\prova-10.html
+[2025-08-13 09:09:59] Post 'prova-10' eliminato.
+[2025-08-13 09:09:59] Lista post aggiornata.
+[2025-08-13 09:10:04] Backup creato: ..\news\backups\news_20250813_091004.json
+[2025-08-13 09:10:04] File HTML eliminato: ..\news\prova-11.html
+[2025-08-13 09:10:04] Post 'prova-11' eliminato.
+[2025-08-13 09:10:04] Lista post aggiornata.
+[2025-08-13 09:10:08] Backup creato: ..\news\backups\news_20250813_091008.json
+[2025-08-13 09:10:08] File HTML eliminato: ..\news\prova-13.html
+[2025-08-13 09:10:08] Post 'prova-13' eliminato.
+[2025-08-13 09:10:08] Lista post aggiornata.
+[2025-08-13 09:10:28] Backup creato: ..\news\backups\news_20250813_091028.json
+[2025-08-13 09:10:28] File HTML eliminato: ..\news\news.html
+[2025-08-13 09:10:28] Post 'news' eliminato.
+[2025-08-13 09:10:28] Lista post aggiornata.
+[2025-08-13 09:10:32] Backup creato: ..\news\backups\news_20250813_091032.json
+[2025-08-13 09:10:32] File HTML eliminato: ..\news\inaugurazione-sede.html
+[2025-08-13 09:10:32] Post 'inaugurazione-sede' eliminato.
+[2025-08-13 09:10:32] Lista post aggiornata.
+[2025-08-13 09:10:46] Backup creato: ..\news\backups\news_20250813_091046.json
+[2025-08-13 09:10:46] news.json rigenerato con 7 post trovati in HTML.
+[2025-08-13 09:10:46] Lista post aggiornata.

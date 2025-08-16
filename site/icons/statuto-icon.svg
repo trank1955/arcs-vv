@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icona Statuto - Completamente ridisegnata in stile Keith Haring -->
+  <defs>
+    <style>
+      .icon-line { fill: none; stroke: #8b4513; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .icon-fill { fill: #8b4513; }
+    </style>
+  </defs>
+  
+  <!-- Figura principale con martelletto della giustizia -->
+  <circle cx="24" cy="6" r="5" class="icon-line"/>
+  <path d="M24 11 L24 32 M18 15 L30 15" class="icon-line"/>
+  
+  <!-- Martelletto gigante -->
+  <rect x="20" y="12" width="8" height="4" rx="2" class="icon-fill"/>
+  <path d="M22 16 L26 16 L26 20 L22 20 Z" class="icon-line"/>
+  
+  <!-- Podio della giustizia -->
+  <rect x="16" y="32" width="16" height="8" class="icon-line"/>
+  <rect x="14" y="40" width="20" height="4" class="icon-fill"/>
+  
+  <!-- Figure che applaudono -->
+  <circle cx="6" cy="24" r="3" class="icon-line"/>
+  <path d="M6 27 L6 35 M3 30 L9 30" class="icon-line"/>
+  <path d="M3 27 Q1 23 3 30" class="icon-line"/>
+  <path d="M9 27 Q11 23 9 30" class="icon-line"/>
+  
+  <circle cx="42" cy="24" r="3" class="icon-line"/>
+  <path d="M42 27 L42 35 M39 30 L45 30" class="icon-line"/>
+  <path d="M39 27 Q37 23 39 30" class="icon-line"/>
+  <path d="M45 27 Q47 23 45 30" class="icon-line"/>
+  
+  <!-- Rotolo di legge che si svolge -->
+  <path d="M4 44 Q8 40 12 44 L36 44 Q40 40 44 44" class="icon-line"/>
+  <path d="M8 42 L16 42 M20 42 L28 42 M32 42 L40 42" class="icon-line"/>
+  
+  <!-- Stelle di approvazione -->
+  <g class="icon-fill">
+    <path d="M2 12 L4 14 L6 12 L4 10 Z"/>
+    <path d="M42 12 L44 14 L46 12 L44 10 Z"/>
+    <path d="M24 2 L26 4 L28 2 L26 0 Z"/>
+    <path d="M12 4 L14 6 L16 4 L14 2 Z"/>
+    <path d="M32 4 L34 6 L36 4 L34 2 Z"/>
+  </g>
+  
+  <!-- Onde di autorità -->
+  <path d="M2 38 Q6 34 10 38" class="icon-line"/>
+  <path d="M38 38 Q42 34 46 38" class="icon-line"/>
+  
+  <!-- Simbolo di approvazione finale -->
+  <path d="M20 26 L22 28 L26 24" class="icon-line"/>
+</svg>
