@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Titolo di prova",
+    "slug": "post_20250820125731",
+    "date": "2025-08-20",
+    "author": "ARCS-VV",
+    "content": "<div class=\"blog-content\">\n      <p>Test contenuto</p>\n    </div>\n    <p style=\"margin-top:2em;\"><a href=\"../news.html\">&larr; Torna all'elenco news</a></p>\n  </main>"
+  },
+  {
+    "title": "Trieste fa scuola!",
+    "slug": "post_20250820200351",
+    "date": "2025-08-20",
+    "author": "ARCS-VV",
+    "image": "../immagini/banner-solidarieta.png",
+    "content": "<div class=\"blog-content\">\n      <p>Scrivi qui il contenuto dell'articolo.</p>\n    </div>\n    <p style=\"margin-top:2em;\"><a href=\"../news.html\">&larr; Torna all'elenco news</a></p>\n  </main>"
+  }
+]

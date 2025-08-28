@@ -14,6 +14,7 @@
     { href: prefix + 'chi-siamo.html', icon: iconPrefix + 'chi-siamo-icon.svg', label: 'Chi siamo' },
     { href: prefix + 'dove-siamo.html', icon: iconPrefix + 'dove-siamo-icon.svg', label: 'Dove siamo' },
     { href: prefix + 'news.html', icon: iconPrefix + 'news-icon.svg', label: 'News' },
+    { href: prefix + 'assistente.html', icon: iconPrefix + 'assistente-icon.svg', label: 'Assistente' },
     { href: prefix + 'contatti.html', icon: iconPrefix + 'contatti-icon.svg', label: 'Contatti' },
     { href: prefix + 'iscriviti.html', icon: iconPrefix + 'iscriviti-icon.svg', label: 'Iscriviti' },
     { href: prefix + 'donazioni.html', icon: iconPrefix + 'donazioni-icon.svg', label: 'Donazioni' }
