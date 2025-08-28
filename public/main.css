@@ -211,11 +211,6 @@ body.page-donazioni {
   --mobile-accent: #1abc9c;  /* Verde acqua */
 }
 
-body.page-assistente {
-  --mobile-bg: #e6f0fb;      /* Azzurro chiarissimo - Assistenza */
-  --mobile-nav: #1565c0;     /* Blu assistente */
-  --mobile-accent: #1565c0;  /* Blu coerente */
-}
 
 /* 3) Reset base */
 * {

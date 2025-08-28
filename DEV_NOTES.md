@@ -6,10 +6,7 @@ Struttura progetto
 - dev/: materiale non pubblico (backup, template di lavoro, ide/)
 - DEPLOY.md: come pubblicare (usa la cartella public/)
 
-Assistente (chat locale)
-- Pagina: pages/assistente.html (voce di menu "Assistente")
-- Senza API: risposte basate su parole chiave e link interni
-- Per estenderlo: aggiungi keyword/risposte nell’array kb dentro assistente.html
+<!-- Sezione Assistente rimossa dal progetto -->
 
 Blog Manager (News)
 - Avvio: `python3 run_blog_manager.py`
@@ -30,7 +27,6 @@ Pulizia fatta
 
 TODO (prossimi passi)
 - Contenuti reali: creare 1–3 news vere con titolo, data, riassunto e (opzionale) immagine
-- Assistente: aggiungere FAQ specifiche (prossimi eventi, raccolte beni, contatti servizi)
 - SEO: opzionale, permettere slug personalizzato in Blog Manager
 - Grafica: rifinire stile chat per aderire ancor più a main.css
 - Deploy: verificare che l’hosting punti a public/ oppure caricare solo public/
@@ -39,4 +35,3 @@ Comandi utili
 - Avvio Blog Manager: `python3 run_blog_manager.py`
 - Rigenera news.json (GUI): dal pulsante "Rigenera news.json"
 - Validazione rapida link (linux/mac): `rg -n "href=\"pagine/|/pagine/|main.js" -S public` (nessun risultato atteso)
-
