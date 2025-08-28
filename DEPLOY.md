@@ -33,3 +33,11 @@ Strumenti
   - Esegue il deploy delle news (equivalente a `deploy_news.py`)
   - Copia `icons/`, `immagini/` e `pdf/` dentro `public/`
   - Crea uno ZIP di `public/` pronto per l'upload (`public_dist_YYYYMMDD_HHMMSS.zip`)
+
+## Comandi rapidi
+
+- Aggiorna news: `make news` oppure `./update_news.sh`
+- Deploy completo + zip: `make deploy` oppure `./deploy_all.sh`
+- Servi in locale la cartella public: `make serve` (porta 8000)
+- Pulizia cache/log: `make clean`
+
