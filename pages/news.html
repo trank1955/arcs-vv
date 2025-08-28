@@ -49,7 +49,8 @@
       if (!content) return '';
       return content.length>120 ? content.slice(0,120)+"…" : content;
     }
-    fetch('./news/news.json').then(r=>r.ok?r.json():[]).then(list=>{
+    // Aggiunge cache-buster per evitare cache del browser
+    fetch('./news/news.json?v=' + Date.now()).then(r=>r.ok?r.json():[]).then(list=>{
       const grid = document.getElementById('newsGrid');
       const empty = document.getElementById('noNewsMsg');
       if (!Array.isArray(list) || list.length===0) { empty.style.display='block'; return; }
