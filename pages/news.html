@@ -29,6 +29,7 @@
   <script src="../menu.js"></script>
   <h1 class="page-title news-title"><img src="../icons/news-icon.svg" alt="News" style="height:32px;width:32px;vertical-align:middle;margin-right:10px;">News</h1>
   <main style="max-width:900px;margin:auto;padding:1em;">
+    <div id="newsDebug" style="font-size:12px;color:#666;margin:.3em 0 .8em;display:none"></div>
     <div id="newsGrid" class="news-grid"></div>
     <p id="noNewsMsg" style="display:none;text-align:center;color:#555;margin:2em 0;">Al momento non ci sono news pubblicate.</p>
   </main>
@@ -53,8 +54,14 @@
     fetch('./news/news.json?v=' + Date.now()).then(r=>r.ok?r.json():[]).then(list=>{
       const grid = document.getElementById('newsGrid');
       const empty = document.getElementById('noNewsMsg');
+      const debug = document.getElementById('newsDebug');
       if (!Array.isArray(list) || list.length===0) { empty.style.display='block'; return; }
       empty.style.display='none';
+      try {
+        const slugs = list.map(it=>it.slug).filter(Boolean);
+        debug.textContent = `Articoli caricati: ${list.length} → ${slugs.join(', ')}`;
+        debug.style.display = 'block';
+      } catch {}
       const sorted = list.slice().sort((a,b)=>{
         const da = Date.parse(a?.date||'') || 0;
         const db = Date.parse(b?.date||'') || 0;
