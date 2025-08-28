@@ -66,6 +66,19 @@
         const db = Date.parse(b?.date||'') || 0;
         return db - da;
       });
+      // Mostra conteggio accanto al titolo
+      try {
+        const h1 = document.querySelector('.news-title');
+        if (h1) {
+          const existing = h1.querySelector('.news-count');
+          if (existing) existing.remove();
+          const span = document.createElement('span');
+          span.className = 'news-count';
+          span.style.cssText = 'color:#666;font-size:.9em;font-weight:600;margin-left:.25em';
+          span.textContent = `(${sorted.length})`;
+          h1.appendChild(span);
+        }
+      } catch {}
       sorted.forEach(item=>{
         const slug=item.slug; if(!slug) return;
         const card=document.createElement('div'); card.className='article-card';
