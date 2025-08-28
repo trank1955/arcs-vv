@@ -13,6 +13,7 @@
     { href: prefix + 'attivita.html', icon: iconPrefix + 'attivita-icon.svg', label: 'Attività' },
     { href: prefix + 'chi-siamo.html', icon: iconPrefix + 'chi-siamo-icon.svg', label: 'Chi siamo' },
     { href: prefix + 'dove-siamo.html', icon: iconPrefix + 'dove-siamo-icon.svg', label: 'Dove siamo' },
+    { href: prefix + 'statuto.html', icon: iconPrefix + 'statuto-icon.svg', label: 'Statuto' },
     { href: prefix + 'news.html', icon: iconPrefix + 'news-icon.svg', label: 'News' },
     { href: prefix + 'contatti.html', icon: iconPrefix + 'contatti-icon.svg', label: 'Contatti' },
     { href: prefix + 'iscriviti.html', icon: iconPrefix + 'iscriviti-icon.svg', label: 'Iscriviti' },
