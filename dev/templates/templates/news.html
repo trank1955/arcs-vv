@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News – ARCS-VV</title>
+  <link rel="icon" type="image/x-icon" href="../icons/favicon.ico">
+  <link rel="stylesheet" href="../main.css?v=1080">
+  <style>
+    .news-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    @media (min-width: 768px) { .news-grid { grid-template-columns: 1fr 1fr; } }
+    .article-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; }
+    .thumb { position: relative; }
+    .thumb img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .date-badge { position: absolute; left: 10px; top: 10px; background: rgba(0,0,0,0.7); color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 0.85em; }
+    .article-body { padding: 1.1em; display: flex; flex-direction: column; gap: .6em; }
+    .article-meta { color: #666; font-size: 0.9em; }
+    .article-title { color: #006699; margin: 0; font-size: 1.2em; line-height: 1.3; }
+    .article-excerpt { color: #555; line-height: 1.6; margin: 0; }
+    .article-read { color: #006699; text-decoration: none; font-weight: 600; margin-top: .4em; }
+  </style>
+</head>
+<body class="page-news">
+  <div id="menu-inject"></div>
+  <script src="../menu.js"></script>
+  <h1 class="page-title news-title"><img src="../icons/news-icon.svg" alt="News" style="height:32px;width:32px;vertical-align:middle;margin-right:10px;">News</h1>
+  <main style="max-width:900px;margin:auto;padding:1em;">
+    <div id="newsGrid" class="news-grid"></div>
+    <p id="noNewsMsg" style="display:none;text-align:center;color:#555;margin:2em 0;">Al momento non ci sono news pubblicate.</p>
+  </main>
+  <script>
+    function normImgSrc(image) {
+      if (!image) return '';
+      if (/^https?:\/\//i.test(image)) return image;
+      if (image.startsWith('../immagini/')) return image;
+      if (image.startsWith('immagini/')) return '../' + image;
+      return image;
+    }
+    function stripHtml(html){ const d=document.createElement('div'); d.innerHTML=html||''; return (d.textContent||'').trim(); }
+    function fmtDate(iso){ if(!iso) return ''; const d=new Date(iso); if(isNaN(d)) return iso; const dd=String(d.getDate()).padStart(2,'0'); const mm=String(d.getMonth()+1).padStart(2,'0'); const yy=d.getFullYear(); return `${dd}/${mm}/${yy}`; }
+    function buildExcerpt(item){
+      const ex = stripHtml(item.excerpt||'');
+      if (ex) return ex;
+      const content = stripHtml(item.content||'');
+      if (!content) return '';
+      return content.length>120 ? content.slice(0,120)+"…" : content;
+    }
+    fetch('./news/news.json').then(r=>r.ok?r.json():[]).then(list=>{
+      const grid = document.getElementById('newsGrid');
+      const empty = document.getElementById('noNewsMsg');
+      if (!Array.isArray(list) || list.length===0) { empty.style.display='block'; return; }
+      empty.style.display='none';
+      const sorted = list.slice().sort((a,b)=>{
+        const da = Date.parse(a?.date||'') || 0;
+        const db = Date.parse(b?.date||'') || 0;
+        return db - da;
+      });
+      sorted.forEach(item=>{
+        const slug=item.slug; if(!slug) return;
+        const card=document.createElement('div'); card.className='article-card';
+        let imgSrc = normImgSrc(item.image||'');
+        if (!imgSrc) { imgSrc = '../immagini/banner-solidarieta.png'; }
+        const thumb=document.createElement('div'); thumb.className='thumb';
+        const img=document.createElement('img'); img.src=imgSrc; img.alt=item.title||'Immagine'; thumb.appendChild(img);
+        if (item.date){ const badge=document.createElement('span'); badge.className='date-badge'; badge.textContent=fmtDate(item.date); thumb.appendChild(badge); }
+        card.appendChild(thumb);
+        const body=document.createElement('div'); body.className='article-body';
+        const meta=document.createElement('div'); meta.className='article-meta'; meta.textContent = `${item.date? '📅 '+fmtDate(item.date): ''}${item.author? ' • '+item.author: ''}`.trim();
+        const h2=document.createElement('h2'); h2.className='article-title'; h2.textContent=item.title||slug;
+        const p=document.createElement('p'); p.className='article-excerpt'; p.textContent=buildExcerpt(item);
+        const a=document.createElement('a'); a.className='article-read'; a.href='./news_post.html?slug='+encodeURIComponent(slug); a.textContent='Leggi tutto →';
+        if (meta.textContent) body.appendChild(meta); body.appendChild(h2); if(p.textContent) body.appendChild(p); body.appendChild(a);
+        card.appendChild(body); grid.appendChild(card);
+      });
+    }).catch(()=>{ document.getElementById('noNewsMsg').style.display='block'; });
+  </script>
+</body>
+</html>
+

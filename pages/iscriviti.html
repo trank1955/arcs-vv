@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- menu-mobile.js rimosso: ora menu responsive unico -->
+  
+  <title>Iscriviti – ARCS-VV</title>
+  <link rel="icon" type="image/x-icon" href="../icons/favicon.ico">
+  <link rel="icon" type="image/png" href="../icons/favicon.ico">
+  <link rel="shortcut icon" href="../icons/favicon.ico">
+  <link rel="stylesheet" href="../main.css?v=1080&t=20250803135018">
+  <style>
+    nav ul li a img {
+      width: 18px !important;
+      height: 18px !important;
+      margin-right: 5px !important;
+      vertical-align: middle !important;
+      display: inline !important;
+      opacity: 1 !important;
+      transition: none !important;
+      filter: brightness(2.5) !important;
+    }
+    /* ——————————————————————————————
+       Allineamento icone menu desktop
+       —————————————————————————————— */
+    /* Forza allineamento checkbox/radio e label nei fieldset - REGOLE FORTI */
+    body.page-iscriviti fieldset.form-group > div {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      margin-bottom: 0.8em !important;
+    }
+    
+    body.page-iscriviti fieldset.form-group > div:not(.form-group) label {
+      margin-left: 10px !important;
+      margin-right: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      flex: 1 !important;
+      order: 2 !important;
+    }
+    
+    body.page-iscriviti fieldset.form-group input[type="checkbox"],
+    body.page-iscriviti fieldset.form-group input[type="radio"] {
+      margin: 0 !important;
+      padding: 0 !important;
+      vertical-align: middle !important;
+      flex: none !important;
+      order: 1 !important;
+      width: auto !important;
+      height: auto !important;
+    }
+    
+    /* Stile speciale per i campi "Altro" all'interno dei fieldset */
+    body.page-iscriviti fieldset.form-group > div.form-group {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      margin-top: 0.8em !important;
+    }
+    
+    body.page-iscriviti fieldset.form-group > div.form-group label {
+      margin-left: 0 !important;
+      margin-bottom: 0.5em !important;
+      order: unset !important;
+    }
+    
+    body.page-iscriviti fieldset.form-group > div.form-group input[type="text"] {
+      width: 100% !important;
+      order: unset !important;
+    }
+  </style>
+</head>
+<body class="page-iscriviti">
+  <div id="menu-inject"></div>
+  <script src="../menu.js"></script>
+
+
+  <!-- ...existing code... -->
+
+  <!-- Titolo della pagina -->
+  <h1 class="page-title iscriviti-title"><img src="../icons/iscriviti-icon.svg" alt="Iscriviti"> Iscriviti a ARCS-VV</h1>
+
+  <!-- MAIN -->
+  <div class="page-wrapper">
+    <main>
+
+    <form action="https://formspree.io/f/xrblernb" method="POST">
+      <!-- Dopo l'invio vai a thankyou.html -->
+      <input type="hidden" name="_next" value="thankyou.html">
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="telefono">Telefono (cell) *</label>
+        <input type="tel" id="telefono" name="telefono" required>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="nome">Nome *</label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="cognome">Cognome *</label>
+        <input type="text" id="cognome" name="cognome" required>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="eta">Età</label>
+        <input type="number" id="eta" name="eta" min="0">
+      </div>
+      <br><br>
+      <fieldset class="form-group">
+        <br>
+        <legend>Cosa ti piacerebbe fare all'interno di ARCS-VV?</legend>
+        <div>
+          <input type="checkbox" id="socio" name="interessi[]" value="Socio sostenitore">
+          <label for="socio">Socio sostenitore (15 €/anno)</label>
+        </div>
+        <div>
+          <input type="checkbox" id="insegnante" name="interessi[]" value="Insegnante">
+          <label for="insegnante">Insegnante</label>
+        </div>
+        <div>
+          <input type="checkbox" id="segreteria" name="interessi[]" value="Mansioni di segreteria">
+          <label for="segreteria">Mansioni di segreteria</label>
+        </div>
+        <div>
+          <input type="checkbox" id="aiuto" name="interessi[]" value="Aiuto ai ragazzi">
+          <label for="aiuto">Aiuto ai ragazzi (burocrazia e accompagnamento)</label>
+        </div>
+        <div>
+          <input type="checkbox" id="eventi" name="interessi[]" value="Organizzare eventi">
+          <label for="eventi">Organizzare eventi</label>
+        </div>
+        <div class="form-group">
+          <label for="interessi-altro">Altro:</label>
+          <input type="text" id="interessi-altro" name="interessi-altro">
+        </div>
+      </fieldset>
+      <br>
+      <fieldset class="form-group">
+        <legend>Lavoratore o pensionato?</legend>
+        <div>
+          <input type="radio" id="lavoratore" name="stato" value="Lavoratrice / Lavoratore">
+          <label for="lavoratore">Lavoratrice / Lavoratore</label>
+        </div>
+        <div>
+          <input type="radio" id="pensionato" name="stato" value="Pensionata/o">
+          <label for="pensionato">Pensionata/o</label>
+        </div>
+        <div>
+          <input type="radio" id="stato-altro" name="stato" value="Altro">
+          <label for="stato-altro">Altro:</label>
+        </div>
+        <div class="form-group">
+          <label for="stato-altro-testo">Specifica altro:</label>
+          <input type="text" id="stato-altro-testo" name="stato-altro-testo">
+        </div>
+      </fieldset>
+
+      <button type="submit">Invia iscrizione</button>
+      <div style="height: 80px;"></div>
+    </form>
+    </main>
+  </div>
+
+  <footer style="background:#f2f2f2; width:100%; position:fixed; bottom:0; left:0; right:0; text-align:center; padding:1rem 0; margin:0; display:block;">
+    <div style="width:100%; text-align:center; max-width:100%;">
+      <p style="font-style:italic; font-size:0.85em; margin:0 auto; display:inline-block; text-align:center;">&copy; 2025 ARCS-VV - Associazione Rete di Cittadinanza Solidale. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+
+  
+</body>
+</html>

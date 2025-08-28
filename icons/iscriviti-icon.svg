@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icona Iscriviti - Figure che si uniscono al gruppo -->
+  <defs>
+    <style>
+      .icon-line { fill: none; stroke: #8b4513; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .icon-fill { fill: #8b4513; }
+    </style>
+  </defs>
+  
+  <!-- Gruppo di figure esistenti -->
+  <circle cx="12" cy="12" r="3" class="icon-line"/>
+  <path d="M12 15 L12 22 M8 18 L16 18" class="icon-line"/>
+  
+  <circle cx="24" cy="12" r="3" class="icon-line"/>
+  <path d="M24 15 L24 22 M20 18 L28 18" class="icon-line"/>
+  
+  <!-- Nuova figura che si avvicina -->
+  <circle cx="40" cy="8" r="3" class="icon-line"/>
+  <path d="M40 11 L40 18 M36 14 L44 14" class="icon-line"/>
+  
+  <!-- Freccia di movimento verso il gruppo -->
+  <path d="M32 16 L28 18 L32 20" class="icon-line"/>
+  
+  <!-- Braccia che si estendono in accoglienza -->
+  <path d="M16 18 Q20 14 24 18" class="icon-line"/>
+  
+  <!-- Cerchio di unione -->
+  <circle cx="24" cy="30" r="12" class="icon-line"/>
+  
+  <!-- Forme che rappresentano l'iscrizione -->
+  <rect x="18" y="26" width="12" height="8" rx="2" class="icon-line"/>
+  <path d="M20 28 L28 28 M20 30 L28 30 M20 32 L26 32" class="icon-line"/>
+  
+  <!-- Cuori che mostrano benvenuto -->
+  <path d="M8 28 C6 26 4 28 8 32 C12 28 10 26 8 28 Z" class="icon-fill"/>
+  <path d="M40 28 C38 26 36 28 40 32 C44 28 42 26 40 28 Z" class="icon-fill"/>
+  
+  <!-- Stelle di celebrazione -->
+  <path d="M6 8 L8 10 L6 12 L4 10 Z" class="icon-fill"/>
+  <path d="M42 2 L44 4 L42 6 L40 4 Z" class="icon-fill"/>
+</svg>

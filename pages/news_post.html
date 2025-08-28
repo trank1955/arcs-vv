@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News – ARCS-VV</title>
+  <link rel="icon" type="image/x-icon" href="../icons/favicon.ico">
+  <link rel="icon" type="image/png" href="../icons/favicon.ico">
+  <link rel="shortcut icon" href="../icons/favicon.ico">
+  <link rel="stylesheet" href="../main.css?v=1080">
+  <style>
+    .article-wrap { max-width: 900px; margin: auto; padding: 1em; }
+    .hero { width: 100%; height: 320px; object-fit: cover; border-radius: 10px; display: block; }
+    .meta { color: #666; font-size: .95em; margin: .4em 0 1em 0; }
+    .back { display: inline-block; margin-top: 2em; color: #006699; font-weight: 600; text-decoration: none; }
+  </style>
+</head>
+<body class="page-news">
+  <div id="menu-inject"></div>
+  <script src="../menu.js"></script>
+  <main class="article-wrap">
+    <div id="article"></div>
+    <p id="notfound" style="display:none;text-align:center;color:#555;margin:2em 0;">Articolo non trovato.</p>
+  </main>
+  <script>
+    function qs(name){ const u=new URL(location.href); return u.searchParams.get(name)||''; }
+    function fmtDate(iso){ if(!iso) return ''; const d=new Date(iso); if(isNaN(d)) return iso; const dd=String(d.getDate()).padStart(2,'0'); const mm=String(d.getMonth()+1).padStart(2,'0'); const yy=d.getFullYear(); return `${dd}/${mm}/${yy}`; }
+    function normImgSrc(image){ if(!image) return ''; if (/^https?:\/\//i.test(image)) return image; if (image.startsWith('../immagini/')) return image; if (image.startsWith('immagini/')) return '../' + image; return image; }
+    function normPdfSrc(pdf){ if(!pdf) return ''; if (/^https?:\/\//i.test(pdf)) return pdf; if (pdf.startsWith('../pdf/')) return pdf; if (pdf.startsWith('pdf/')) return '../' + pdf; if (/\.pdf$/i.test(pdf)) return '../pdf/' + pdf; return pdf; }
+    function sanitizeContent(html){
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html || '';
+      tmp.querySelectorAll('#menu-inject, script').forEach(el=>el.remove());
+      tmp.querySelectorAll('a[href="../news.html"], a[href="./news.html"]').forEach(el=>el.remove());
+      tmp.querySelectorAll('main').forEach(m=>{
+        const parent = m.parentNode; while(m.firstChild) parent.insertBefore(m.firstChild, m); m.remove();
+      });
+      return tmp.innerHTML;
+    }
+    const slug = qs('slug');
+    fetch('./news/news.json').then(r=>r.ok?r.json():[]).then(list=>{
+      if (!slug) { document.getElementById('notfound').style.display='block'; return; }
+      const item = (list||[]).find(x=>x.slug===slug);
+      if (!item) { document.getElementById('notfound').style.display='block'; return; }
+      const wrap = document.getElementById('article');
+      const h1 = document.createElement('h1'); h1.textContent = item.title || slug; wrap.appendChild(h1);
+      const meta = document.createElement('div'); meta.className='meta'; meta.textContent = `${item.date? 'Pubblicato il '+fmtDate(item.date): ''}${item.author? ' • '+item.author: ''}`.trim(); if(meta.textContent) wrap.appendChild(meta);
+      const imgSrc = normImgSrc(item.image||''); if (imgSrc){ const img=document.createElement('img'); img.src=imgSrc; img.alt=item.title||'Immagine'; img.className='hero'; img.onerror=()=>{img.src='../immagini/banner-solidarieta.png'}; wrap.appendChild(img); }
+      const pdfHref = normPdfSrc(item.pdf||''); if (pdfHref){ const p=document.createElement('p'); p.innerHTML = `<a href="${pdfHref}" target="_blank" rel="noopener" style="font-weight:600;color:#006699;">📄 Scarica PDF</a>`; wrap.appendChild(p); }
+      const content = document.createElement('div'); content.className='blog-content'; content.innerHTML = sanitizeContent(item.content || (item.excerpt||'')); wrap.appendChild(content);
+      const back = document.createElement('a'); back.href = './news.html'; back.className='back'; back.textContent='← Torna alle news'; wrap.appendChild(back);
+    }).catch(()=>{ document.getElementById('notfound').style.display='block'; });
+  </script>
+</body>
+</html>
