@@ -29,7 +29,6 @@
   <script src="../menu.js"></script>
   <h1 class="page-title news-title"><img src="../icons/news-icon.svg" alt="News" style="height:32px;width:32px;vertical-align:middle;margin-right:10px;">News</h1>
   <main style="max-width:900px;margin:auto;padding:1em;">
-    <div id="newsDebug" style="font-size:12px;color:#b00;margin:.3em 0 .8em;">Debug: in caricamento…</div>
     <div id="newsGrid" class="news-grid"></div>
     <p id="noNewsMsg" style="display:none;text-align:center;color:#555;margin:2em 0;">Al momento non ci sono news pubblicate.</p>
   </main>
@@ -55,12 +54,6 @@
     fetch('./news/news.json?v=' + v).then(r=>r.ok?r.json():[]).then(list=>{
       const grid = document.getElementById('newsGrid');
       const empty = document.getElementById('noNewsMsg');
-      const debug = document.getElementById('newsDebug');
-      try {
-        const n = Array.isArray(list) ? list.length : 0;
-        const slugs = Array.isArray(list) ? list.map(it=>it.slug).filter(Boolean) : [];
-        debug.textContent = `Articoli caricati: ${n} (v=${v})` + (slugs.length? ` → ${slugs.join(', ')}` : '');
-      } catch {}
       if (!Array.isArray(list) || list.length===0) { empty.style.display='block'; return; }
       empty.style.display='none';
       try {
