@@ -1,0 +1,72 @@
+{
+  "project_settings": {
+    "name": "ARCS-VV Website",
+    "version": "1.0",
+    "description": "Sistema di gestione pagine statiche per ARCS-VV"
+  },
+  "html_template": {
+    "doctype": "html5",
+    "language": "it",
+    "charset": "UTF-8",
+    "viewport": "width=device-width, initial-scale=1",
+    "css_version": "1080",
+    "css_timestamp": "20250803135018"
+  },
+  "image_settings": {
+    "max_width": 1200,
+    "quality": 85,
+    "formats": ["jpg", "jpeg", "png"],
+    "auto_optimize": true,
+    "convert_rgba": true
+  },
+  "video_settings": {
+    "youtube": {
+      "width": 560,
+      "height": 315,
+      "allow_fullscreen": true,
+      "responsive": true
+    },
+    "vimeo": {
+      "width": 560,
+      "height": 315,
+      "allow_fullscreen": true,
+      "responsive": true
+    },
+    "local": {
+      "width": 560,
+      "height": 315,
+      "controls": true
+    }
+  },
+  "pdf_settings": {
+    "show_preview": true,
+    "download_button": true,
+    "view_button": true,
+    "box_style": {
+      "border": "2px solid #e0e0e0",
+      "border_radius": "8px",
+      "background": "#f9f9f9",
+      "padding": "1.5em"
+    }
+  },
+  "supported_html_tags": [
+    "strong", "b", "em", "i", "u", "h1", "h2", "h3", "h4", "h5", "h6",
+    "p", "br", "ul", "ol", "li", "a", "img", "div", "span", "blockquote"
+  ],
+  "page_structure": {
+    "wrapper_class": "page-wrapper",
+    "main_section": true,
+    "footer_fixed": true,
+    "menu_injection": true
+  },
+  "backup_settings": {
+    "auto_backup": false,
+    "backup_suffix": ".backup",
+    "max_backups": 5
+  },
+  "security": {
+    "require_confirmation": true,
+    "show_warnings": true,
+    "validate_html": false
+  }
+}

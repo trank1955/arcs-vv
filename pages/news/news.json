@@ -1,17 +1,162 @@
 [
   {
-    "title": "Titolo di prova",
-    "slug": "post_20250820125731",
-    "date": "2025-08-20",
+    "title": "Evento \"Voci Migranti\" – ARCS-VV",
+    "slug": "evento-voci-migranti",
     "author": "ARCS-VV",
-    "content": "<div class=\"blog-content\">\n      <p>Test contenuto</p>\n    </div>\n    <p style=\"margin-top:2em;\"><a href=\"../news.html\">&larr; Torna all'elenco news</a></p>\n  </main>"
+    "date": "2025-08-09",
+    "image": "blog-cover_photo-300.jpeg",
+    "summary": "Una serata di testimonianze, musica e condivisione per dar voce alle storie di chi ha intrapreso il viaggio della migrazione."
   },
   {
-    "title": "Trieste fa scuola!",
-    "slug": "post_20250820200351",
-    "date": "2025-08-20",
+    "title": "Prova 16 – ARCS-VV",
+    "slug": "prova-16",
     "author": "ARCS-VV",
-    "image": "../immagini/banner-solidarieta.png",
-    "content": "<div class=\"blog-content\">\n      <p>Scrivi qui il contenuto dell'articolo.</p>\n    </div>\n    <p style=\"margin-top:2em;\"><a href=\"../news.html\">&larr; Torna all'elenco news</a></p>\n  </main>"
+    "date": "2025-08-09",
+    "image": "YOUTUBE_THUMBNAIL.jpg",
+    "summary": "Qui va il riassunto dell'articolo, inserito dallo script Python."
+  },
+  {
+    "title": "Video YouTube – ARCS-VV",
+    "slug": "fhsfhsfhsf",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "hqdefault.jpg",
+    "summary": "Questo è un video YouTube che mostra le nostre attività di solidarietà e accoglienza."
+  },
+  {
+    "title": "Inaugurazione della nuova sede – ARCS-VV",
+    "slug": "inaugurazione-sede",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "blog-cover_photo-300.jpeg",
+    "summary": "Con grande emozione abbiamo inaugurato la nostra nuova sede operativa nel centro di Vittorio Veneto."
+  },
+  {
+    "title": "Qualcosa si muove in Provincia... – ARCS-VV",
+    "slug": "qualcosa-si-muove-in-provincia",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "blog-med-1200x630-24-690x362.jpeg",
+    "summary": "La nostra provincia di Treviso ha dato uno splendido esempio per tutti noi."
+  },
+  {
+    "title": "Aggiornamento statuto associativo – ARCS-VV",
+    "slug": "aggiornamento-statuto-associativo",
+    "author": "ARCS-VV",
+    "date": "2025-08-28",
+    "image": null,
+    "summary": "Il nostro statuto associativo è stato aggiornato per riflettere meglio i nostri obiettivi e la nostra missione. Le modifiche includono una maggiore attenzione alla sostenibilità e all'innovazione sociale."
+  },
+  {
+    "title": "Nuova iniziativa di solidarietà 2025 – ARCS-VV",
+    "slug": "nuova-iniziativa-di-solidarietà-2025",
+    "author": "ARCS-VV",
+    "date": "2025-08-28",
+    "image": "blog-cover_photo-300.jpeg",
+    "summary": "Siamo orgogliosi di annunciare una nuova iniziativa di solidarietà che coinvolgerà tutta la comunità di Vittorio Veneto. Questa iniziativa si concentrerà sull'aiuto alle famiglie in difficoltà e sulla promozione dell'integrazione culturale."
+  },
+  {
+    "title": "Test finale sistema news – ARCS-VV",
+    "slug": "test-finale-sistema-news",
+    "author": "ARCS-VV",
+    "date": "2025-08-28",
+    "image": "blog-cover_photo-300.jpeg",
+    "summary": "Questo è un test per verificare che tutto il sistema funzioni correttamente. I link leggi tutto dovrebbero funzionare perfettamente!"
+  },
+  {
+    "title": "Volontariato estivo 2025 – ARCS-VV",
+    "slug": "volontariato-estivo-2025",
+    "author": "ARCS-VV",
+    "date": "2025-08-28",
+    "image": "blog-cover_photo-300.jpeg",
+    "summary": "Cerchiamo volontari per le nostre attività estive di accoglienza e supporto alle famiglie in difficoltà. Un'opportunità per fare la differenza nella nostra comunità."
+  },
+  {
+    "title": "Raccolta fondi per l'accoglienza – ARCS-VV",
+    "slug": "raccolta-fondi",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "blog-cover_photo-300.jpeg",
+    "summary": "Lanciamo una campagna di raccolta fondi per sostenere le attività di accoglienza e integrazione."
+  },
+  {
+    "title": "Esempio Multimedia - ARCS-VV – ARCS-VV",
+    "slug": "esempio-multimedia",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "benner-solidarietà.png",
+    "summary": null
+  },
+  {
+    "title": "Prova 13 – ARCS-VV – ARCS-VV",
+    "slug": "prova-13",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "benner-solidarietà.png",
+    "summary": "riassunto di prova 13"
+  },
+  {
+    "title": "Collaborazione con scuole locali – ARCS-VV",
+    "slug": "collaborazione-con-scuole-locali",
+    "author": "ARCS-VV",
+    "date": "2025-08-28",
+    "image": "blog-med-1200x630-24-690x362.jpeg",
+    "summary": "Abbiamo avviato una collaborazione con le scuole locali per promuovere l'educazione alla solidarietà e all'intercultura. I primi risultati sono molto promettenti."
+  },
+  {
+    "title": "PER NON PRDERE LA NOSTRA UMANITA' – ARCS-VV – ARCS-VV",
+    "slug": "per-non-prdere-la-nostra-umanita",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "benner-solidarietà.png",
+    "summary": null
+  },
+  {
+    "title": "PER NON PERDERE LA NOSTRA UMANITA'... – ARCS-VV – ARCS-VV",
+    "slug": "per-non-perdere-la-nostra-umanita",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "benner-solidarietà.png",
+    "summary": null
+  },
+  {
+    "title": "Test Generatore News - Funziona! – ARCS-VV",
+    "slug": "test-generatore-news-funziona",
+    "author": "ARCS-VV",
+    "date": "2025-08-28",
+    "image": "blog-cover_photo-300.jpeg",
+    "summary": "Questa è una news di test per verificare che il generatore funzioni correttamente e che i link leggi tutto puntino ai percorsi giusti."
+  },
+  {
+    "title": "Per non perdere la nostra umanità... – ARCS-VV – ARCS-VV",
+    "slug": "per-non-perdere-la-nostra-umanità",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "benner-solidarietà.png",
+    "summary": null
+  },
+  {
+    "title": "Voglio andare in vacanza!!! – ARCS-VV",
+    "slug": "voglio-andare-in-vacanza",
+    "author": "ARCS-VV",
+    "date": "2025-08-28",
+    "image": "sede.png",
+    "summary": "Consigli per una bella vacanza"
+  },
+  {
+    "title": "Workshop sulla solidarietà interculturale – ARCS-VV",
+    "slug": "workshop-solidarieta",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "blog-cover_photo-300.jpeg",
+    "summary": "Un incontro formativo per volontari e cittadini interessati ai temi dell'integrazione e della cooperazione interculturale."
+  },
+  {
+    "title": "prova 12 – ARCS-VV – ARCS-VV",
+    "slug": "prova-12",
+    "author": "ARCS-VV",
+    "date": "2025-08-09",
+    "image": "benner-solidarietà.png",
+    "summary": null
   }
 ]

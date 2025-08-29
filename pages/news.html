@@ -3,99 +3,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
   <title>News – ARCS-VV</title>
   <link rel="icon" type="image/x-icon" href="../icons/favicon.ico">
-  <link rel="icon" type="image/png" href="../icons/favicon.ico">
-  <link rel="shortcut icon" href="../icons/favicon.ico">
   <link rel="stylesheet" href="../main.css?v=1080">
-  <style>
-    .news-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-    @media (min-width: 768px) { .news-grid { grid-template-columns: 1fr 1fr; } }
-    .article-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; }
-    .thumb { position: relative; }
-    .thumb img { width: 100%; height: 220px; object-fit: cover; display: block; }
-    .date-badge { position: absolute; left: 10px; top: 10px; background: rgba(0,0,0,0.7); color: #fff; padding: 4px 8px; border-radius: 6px; font-size: 0.85em; }
-    .article-body { padding: 1.1em; display: flex; flex-direction: column; gap: .6em; }
-    .article-meta { color: #666; font-size: 0.9em; }
-    .article-title { color: #006699; margin: 0; font-size: 1.2em; line-height: 1.3; }
-    .article-excerpt { color: #555; line-height: 1.6; margin: 0; }
-    .article-read { color: #006699; text-decoration: none; font-weight: 600; margin-top: .4em; }
-    .article-card a { text-decoration: none; }
-    .article-card:hover .article-title { text-decoration: underline; }
-  </style>
 </head>
 <body class="page-news">
-  <div id="menu-inject"></div>
-  <script src="../menu.js"></script>
   <h1 class="page-title news-title"><img src="../icons/news-icon.svg" alt="News" style="height:32px;width:32px;vertical-align:middle;margin-right:10px;">News</h1>
-  <main style="max-width:900px;margin:auto;padding:1em;">
-    <div id="newsGrid" class="news-grid"></div>
-    <p id="noNewsMsg" style="display:none;text-align:center;color:#555;margin:2em 0;">Al momento non ci sono news pubblicate.</p>
-  </main>
-  <script>
-    function normImgSrc(image) {
-      if (!image) return '';
-      if (/^https?:\/\//i.test(image)) return image;
-      if (image.startsWith('../immagini/')) return image;
-      if (image.startsWith('immagini/')) return '../' + image;
-      return image;
-    }
-    function stripHtml(html){ const d=document.createElement('div'); d.innerHTML=html||''; return (d.textContent||'').trim(); }
-    function fmtDate(iso){ if(!iso) return ''; const d=new Date(iso); if(isNaN(d)) return iso; const dd=String(d.getDate()).padStart(2,'0'); const mm=String(d.getMonth()+1).padStart(2,'0'); const yy=d.getFullYear(); return `${dd}/${mm}/${yy}`; }
-    function buildExcerpt(item){
-      const ex = stripHtml(item.excerpt||'');
-      if (ex) return ex;
-      const content = stripHtml(item.content||'');
-      if (!content) return '';
-      return content.length>120 ? content.slice(0,120)+"…" : content;
-    }
-    // Aggiunge cache-buster per evitare cache del browser
-    const v = Date.now();
-    fetch('./news/news.json?v=' + v).then(r=>r.ok?r.json():[]).then(list=>{
-      const grid = document.getElementById('newsGrid');
-      const empty = document.getElementById('noNewsMsg');
-      if (!Array.isArray(list) || list.length===0) { empty.style.display='block'; return; }
-      empty.style.display='none';
-      // (debug rimosso)
-      const sorted = list.slice().sort((a,b)=>{
-        const da = Date.parse(a?.date||'') || 0;
-        const db = Date.parse(b?.date||'') || 0;
-        return db - da;
-      });
-      // Mostra conteggio accanto al titolo
-      try {
-        const h1 = document.querySelector('.news-title');
-        if (h1) {
-          const existing = h1.querySelector('.news-count');
-          if (existing) existing.remove();
-          const span = document.createElement('span');
-          span.className = 'news-count';
-          span.style.cssText = 'color:#666;font-size:.9em;font-weight:600;margin-left:.25em';
-          span.textContent = `(${sorted.length})`;
-          h1.appendChild(span);
-        }
-      } catch {}
-      sorted.forEach(item=>{
-        const slug=item.slug; if(!slug) return;
-        const card=document.createElement('div'); card.className='article-card';
-        let imgSrc = normImgSrc(item.image||'');
-        if (!imgSrc) { imgSrc = '../immagini/banner-solidarieta.png'; }
-        const thumb=document.createElement('div'); thumb.className='thumb';
-        const img=document.createElement('img'); img.src=imgSrc; img.alt=item.title||'Immagine'; img.onerror=()=>{img.src='../immagini/banner-solidarieta.png'}; thumb.appendChild(img);
-        if (item.date){ const badge=document.createElement('span'); badge.className='date-badge'; badge.textContent=fmtDate(item.date); thumb.appendChild(badge); }
-        card.appendChild(thumb);
-        const body=document.createElement('div'); body.className='article-body';
-        const meta=document.createElement('div'); meta.className='article-meta'; meta.textContent = `${item.date? '📅 '+fmtDate(item.date): ''}${item.author? ' • '+item.author: ''}`.trim();
-        const h2=document.createElement('h2'); h2.className='article-title'; h2.textContent=item.title||slug;
-        const p=document.createElement('p'); p.className='article-excerpt'; p.textContent=buildExcerpt(item);
-        const a=document.createElement('a'); a.className='article-read'; a.href='./news_post.html?slug='+encodeURIComponent(slug); a.textContent='Leggi tutto →';
-        if (meta.textContent) body.appendChild(meta); body.appendChild(h2); if(p.textContent) body.appendChild(p); body.appendChild(a);
-        card.appendChild(body); grid.appendChild(card);
-      });
-    }).catch(()=>{ document.getElementById('noNewsMsg').style.display='block'; });
-  </script>
+  
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;max-width:900px;">
+
+  <!-- COPPIA 1 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-cover_photo-300.jpeg" alt="Aggiornamento statuto associativo – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 28 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Aggiornamento statuto associativo – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Il nostro statuto associativo è stato aggiornato per riflettere meglio i nostri obiettivi e la nostra missione. Le modifiche includono una maggiore attenzione alla sostenibilità e all'innovazione sociale.</p>
+              <a href="news/aggiornamento-statuto-associativo.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-cover_photo-300.jpeg" alt="Nuova iniziativa di solidarietà 2025 – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 28 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Nuova iniziativa di solidarietà 2025 – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Siamo orgogliosi di annunciare una nuova iniziativa di solidarietà che coinvolgerà tutta la comunità di Vittorio Veneto. Questa iniziativa si concentrerà sull'aiuto alle famiglie in difficoltà e sulla promozione dell'integrazione culturale.</p>
+              <a href="news/nuova-iniziativa-di-solidarietà-2025.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+  <!-- COPPIA 2 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-cover_photo-300.jpeg" alt="Test finale sistema news – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 28 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Test finale sistema news – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Questo è un test per verificare che tutto il sistema funzioni correttamente. I link leggi tutto dovrebbero funzionare perfettamente!</p>
+              <a href="news/test-finale-sistema-news.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-cover_photo-300.jpeg" alt="Volontariato estivo 2025 – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 28 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Volontariato estivo 2025 – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Cerchiamo volontari per le nostre attività estive di accoglienza e supporto alle famiglie in difficoltà. Un'opportunità per fare la differenza nella nostra comunità.</p>
+              <a href="news/volontariato-estivo-2025.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+  <!-- COPPIA 3 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-med-1200x630-24-690x362.jpeg" alt="Collaborazione con scuole locali – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 28 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Collaborazione con scuole locali – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Abbiamo avviato una collaborazione con le scuole locali per promuovere l'educazione alla solidarietà e all'intercultura. I primi risultati sono molto promettenti.</p>
+              <a href="news/collaborazione-con-scuole-locali.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-cover_photo-300.jpeg" alt="Test Generatore News - Funziona! – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 28 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Test Generatore News - Funziona! – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Questa è una news di test per verificare che il generatore funzioni correttamente e che i link leggi tutto puntino ai percorsi giusti.</p>
+              <a href="news/test-generatore-news-funziona.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+  <!-- COPPIA 4 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/sede.png" alt="Voglio andare in vacanza!!! – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 28 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Voglio andare in vacanza!!! – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Consigli per una bella vacanza</p>
+              <a href="news/voglio-andare-in-vacanza.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-cover_photo-300.jpeg" alt="Evento "Voci Migranti" – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Evento "Voci Migranti" – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Una serata di testimonianze, musica e condivisione per dar voce alle storie di chi ha intrapreso il viaggio della migrazione.</p>
+              <a href="news/evento-voci-migranti.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+  <!-- COPPIA 5 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="background: transparent; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
+            <div style="position: relative;">
+              <img src="https://img.youtube.com/vi/YOUTUBE_THUMBNAIL.jpg/hqdefault.jpg" alt="Prova 16 – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                <span style="color: white; font-size: 24px;">▶️</span>
+              </div>
+            </div>
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Prova 16 – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Qui va il riassunto dell'articolo, inserito dallo script Python.</p>
+              <a href="news/prova-16.html" style="color: #006699; text-decoration: none; font-weight: 600;">🎥 Guarda il video →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="https://img.youtube.com/vi/gYX7G39FUbU/hqdefault.jpg" alt="Video YouTube – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Video YouTube – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Questo è un video YouTube che mostra le nostre attività di solidarietà e accoglienza.</p>
+              <a href="news/fhsfhsfhsf.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+  <!-- COPPIA 6 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-cover_photo-300.jpeg" alt="Inaugurazione della nuova sede – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Inaugurazione della nuova sede – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Con grande emozione abbiamo inaugurato la nostra nuova sede operativa nel centro di Vittorio Veneto.</p>
+              <a href="news/inaugurazione-sede.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-med-1200x630-24-690x362.jpeg" alt="Qualcosa si muove in Provincia... – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Qualcosa si muove in Provincia... – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">La nostra provincia di Treviso ha dato uno splendido esempio per tutti noi.</p>
+              <a href="news/qualcosa-si-muove-in-provincia.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+  <!-- COPPIA 7 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-cover_photo-300.jpeg" alt="Raccolta fondi per l'accoglienza – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Raccolta fondi per l'accoglienza – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Lanciamo una campagna di raccolta fondi per sostenere le attività di accoglienza e integrazione.</p>
+              <a href="news/raccolta-fondi.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/benner-solidarietà.png" alt="Esempio Multimedia - ARCS-VV – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Esempio Multimedia - ARCS-VV – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">None</p>
+              <a href="news/esempio-multimedia.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+  <!-- COPPIA 8 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/benner-solidarietà.png" alt="Prova 13 – ARCS-VV – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Prova 13 – ARCS-VV – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">riassunto di prova 13</p>
+              <a href="news/prova-13.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/benner-solidarietà.png" alt="PER NON PRDERE LA NOSTRA UMANITA' – ARCS-VV – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">PER NON PRDERE LA NOSTRA UMANITA' – ARCS-VV – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">None</p>
+              <a href="news/per-non-prdere-la-nostra-umanita.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+  <!-- COPPIA 9 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/benner-solidarietà.png" alt="PER NON PERDERE LA NOSTRA UMANITA'... – ARCS-VV – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">PER NON PERDERE LA NOSTRA UMANITA'... – ARCS-VV – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">None</p>
+              <a href="news/per-non-perdere-la-nostra-umanita.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/benner-solidarietà.png" alt="Per non perdere la nostra umanità... – ARCS-VV – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Per non perdere la nostra umanità... – ARCS-VV – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">None</p>
+              <a href="news/per-non-perdere-la-nostra-umanità.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+  <!-- COPPIA 10 -->
+      <tr>
+        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/blog-cover_photo-300.jpeg" alt="Workshop sulla solidarietà interculturale – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">Workshop sulla solidarietà interculturale – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">Un incontro formativo per volontari e cittadini interessati ai temi dell'integrazione e della cooperazione interculturale.</p>
+              <a href="news/workshop-solidarieta.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>        <td width="50%" valign="top">
+          <div class="article-card" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <img src="../immagini/benner-solidarietà.png" alt="prova 12 – ARCS-VV – ARCS-VV" style="width: 100%; height: 220px; object-fit: cover; display: block;">
+            <div style="padding: 1.5em;">
+              <div style="color: #666; font-size: 0.9em; margin-bottom: 0.5em;">📅 09 August 2025</div>
+              <h2 style="color: #006699; margin: 0 0 1em 0; font-size: 1.3em; line-height: 1.3;">prova 12 – ARCS-VV – ARCS-VV</h2>
+              <p style="color: #555; line-height: 1.6; margin-bottom: 1.5em;">None</p>
+              <a href="news/prova-12.html" style="color: #006699; text-decoration: none; font-weight: 600;">Leggi tutto →</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr><td colspan="2" style="height:2em"></td></tr>
+
+  </table>
+
+      <!-- Layout alternativo per MOBILE -->
+      <div class="mobile-blog-container" style="display: none;">
+        <!-- Articoli mobile verranno generati dinamicamente -->
+      </div>
+
+      <br>
+      <!-- Invito all'azione -->
+      <div style="text-align: center; margin: 3em 0 2em 0; padding: 2em; background: #f5e9d8; border-radius: 8px;">
+        <h3>💡 Vuoi essere sempre aggiornato?</h3>
+        <p>Seguici sui social media o <a href="contatti.html">contattaci</a> per ricevere tutte le novità sulle nostre attività.</p>
+        <div style="margin-top: 1.5em;">
+          <a href="iscriviti.html" class="button">Iscriviti come volontario</a>
+          <a href="statuto.html" class="button" style="margin-left: 1em;">sostieni le nostre attività</a>
+        </div>
+      </div>
+    
+    <!-- Spazio aggiuntivo per evitare sovrapposizioni con il footer -->
+    <div style="height: 120px; width: 100%; clear: both;"></div>
+    
+  </div>
+
+  <footer style="background:#f2f2f2; width:100%; position:fixed; bottom:0; left:0; right:0; text-align:center; padding:1rem 0; margin:0; display:block; z-index:1000;">
+    <div style="width:100%; text-align:center; max-width:100%;">
+      <p style="font-style:italic; font-size:0.85em; margin:0 auto; display:inline-block; text-align:center;">&copy; 2025 ARCS-VV - Associazione Rete di Cittadinanza Solidale. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+  <!-- Include JavaScript per il menu mobile -->
+  <script src="../main.js"></script>
 </body>
 </html>

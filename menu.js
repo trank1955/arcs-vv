@@ -3,8 +3,7 @@
 (function() {
   // Determina se siamo nella vera root (solo / o /index.html), altrimenti sempre sottocartella
   var isRoot = window.location.pathname.replace(/\\/g, '/').match(/^\/?(index\.html)?$/);
-  // Usa sempre la cartella 'pages' (non 'pagine') dalla root
-  var prefix = isRoot ? 'pages/' : '';
+  var prefix = isRoot ? 'pagine/' : '';
   var iconPrefix = isRoot ? 'icons/' : '../icons/';
 
   // Voci di menu
@@ -13,8 +12,8 @@
     { href: prefix + 'attivita.html', icon: iconPrefix + 'attivita-icon.svg', label: 'Attività' },
     { href: prefix + 'chi-siamo.html', icon: iconPrefix + 'chi-siamo-icon.svg', label: 'Chi siamo' },
     { href: prefix + 'dove-siamo.html', icon: iconPrefix + 'dove-siamo-icon.svg', label: 'Dove siamo' },
-    { href: prefix + 'statuto.html', icon: iconPrefix + 'statuto-icon.svg', label: 'Statuto' },
     { href: prefix + 'news.html', icon: iconPrefix + 'news-icon.svg', label: 'News' },
+    { href: prefix + 'statuto.html', icon: iconPrefix + 'statuto-icon.svg', label: 'Statuto' },
     { href: prefix + 'contatti.html', icon: iconPrefix + 'contatti-icon.svg', label: 'Contatti' },
     { href: prefix + 'iscriviti.html', icon: iconPrefix + 'iscriviti-icon.svg', label: 'Iscriviti' },
     { href: prefix + 'donazioni.html', icon: iconPrefix + 'donazioni-icon.svg', label: 'Donazioni' }
@@ -28,7 +27,7 @@
   desktopMenu += '</span>';
   desktopMenu += '<ul style="display:flex;gap:1em;list-style:none;align-items:center;margin:0;">';
   menuItems.forEach(function(item) {
-    desktopMenu += '<li><a href="' + item.href + '"><img src="' + item.icon + '" class="menu-icon" alt="' + item.label + '">' + item.label + '</a></li>';
+    desktopMenu += '<li><a target="_self" rel="noopener" href="' + item.href + '"><img src="' + item.icon + '" class="menu-icon" alt="' + item.label + '">' + item.label + '</a></li>';
   });
   desktopMenu += '</ul></div></nav>';
 
@@ -37,7 +36,7 @@
   mobileMenu += '<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>';
   mobileMenu += '<nav class="mobile-menu" id="mobileMenu">';
   menuItems.forEach(function(item) {
-    mobileMenu += '<a href="' + item.href + '">' + item.label + '</a>';
+    mobileMenu += '<a target="_self" rel="noopener" href="' + item.href + '">' + item.label + '</a>';
   });
   mobileMenu += '</nav>';
 

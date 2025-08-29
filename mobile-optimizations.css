@@ -1,0 +1,342 @@
+/* ========================================
+   OTTIMIZZAZIONI MOBILE ARCS-VV
+   ======================================== */
+
+/* === BREAKPOINT AGGIUNTIVI === */
+@media (max-width: 320px) {
+  /* Schermi molto piccoli (smartphone piccoli) */
+  .page-wrapper {
+    padding: 0.5em 0.3em 100px 0.3em !important;
+  }
+  
+  h1 {
+    font-size: 1.4em !important;
+    padding: 0 0.3em !important;
+  }
+  
+  .custom-box {
+    margin: 1em 0.3em !important;
+    padding: 1em 0.8em !important;
+  }
+  
+  .cta-buttons {
+    flex-direction: column !important;
+    gap: 1em !important;
+  }
+  
+  .cta-buttons .button {
+    width: 100% !important;
+    margin: 0.3em 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Smartphone standard */
+  .visitor-counter {
+    margin: 1em auto !important;
+    padding: 1em !important;
+  }
+  
+  .visitor-counter h3 {
+    font-size: 1.1em !important;
+  }
+  
+  .visitor-counter .grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.8em !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Tablet e smartphone grandi */
+  
+  /* Migliora la tipografia per mobile */
+  body {
+    font-size: 16px !important; /* Prevenire zoom su iOS */
+    line-height: 1.6 !important;
+  }
+  
+  /* Ottimizza spaziature per touch */
+  .button, button {
+    min-height: 48px !important; /* Standard Google Material */
+    min-width: 48px !important;
+    padding: 1em 1.5em !important;
+    font-size: 16px !important;
+    margin: 0.5em 0.3em !important;
+  }
+  
+  /* Migliora layout griglia news */
+  .news-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5em !important;
+  }
+  
+  .news-item {
+    margin-bottom: 1.5em !important;
+  }
+  
+  /* Ottimizza immagini responsive */
+  .frontespizio-img {
+    width: 95% !important;
+    max-width: 400px !important;
+    height: auto !important;
+  }
+  
+  /* Migliora form su mobile */
+  form {
+    padding: 1.5em 1em !important;
+    margin: 1em 0.5em !important;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"] {
+    font-size: 16px !important; /* Prevenire zoom su iOS */
+    padding: 1em !important;
+    margin-bottom: 1em !important;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Tablet e dispositivi medi */
+  
+  /* Migliora layout generale */
+  .page-wrapper {
+    padding: 1em 0.8em 140px 0.8em !important;
+  }
+  
+  /* Ottimizza contenitori */
+  .custom-box {
+    width: 95% !important;
+    margin: 1.5em auto !important;
+    padding: 1.5em 1.2em !important;
+  }
+  
+  /* Migliora navigazione */
+  nav a {
+    padding: 0.8em 0.6em !important;
+    font-size: 0.9em !important;
+    min-width: 80px !important;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  /* Tablet in orientamento landscape */
+  .mobile-menu.open {
+    width: 60vw !important;
+    max-width: 280px !important;
+  }
+  
+  .page-wrapper {
+    padding-bottom: 120px !important;
+  }
+}
+
+/* === OTTIMIZZAZIONI TOUCH === */
+@media (hover: none) and (pointer: coarse) {
+  /* Dispositivi touch */
+  
+  /* Aumenta area di touch per link */
+  a {
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Migliora feedback touch */
+  .button:active,
+  button:active {
+    transform: scale(0.98) !important;
+    transition: transform 0.1s ease !important;
+  }
+  
+  /* Aumenta spaziature per touch */
+  .cta-buttons {
+    gap: 1.5em !important;
+    padding: 2em 0 !important;
+  }
+  
+  .cta-buttons .button {
+    margin: 0.5em !important;
+  }
+}
+
+/* === OTTIMIZZAZIONI PERFORMANCE MOBILE === */
+@media (max-width: 768px) {
+  /* Riduci animazioni su dispositivi meno potenti */
+  * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Ottimizza ombre per mobile */
+  .button,
+  .custom-box,
+  .visitor-counter {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  }
+  
+  /* Riduci effetti hover su mobile */
+  .button:hover,
+  .custom-box:hover {
+    transform: none !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  }
+}
+
+/* === OTTIMIZZAZIONI SPECIFICHE PER PAGINE === */
+
+/* Home page mobile */
+@media (max-width: 768px) {
+  .page-home .frontespizio-container {
+    margin: 1em 0 !important;
+  }
+  
+  .page-home .custom-box {
+    text-align: center !important;
+  }
+  
+  .page-home .cta-buttons {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+/* News page mobile */
+@media (max-width: 768px) {
+  .news-container {
+    padding: 1em 0.5em !important;
+  }
+  
+  .news-grid {
+    gap: 1em !important;
+  }
+  
+  .news-item {
+    padding: 1em !important;
+  }
+  
+  .news-item img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Statuto page mobile */
+@media (max-width: 768px) {
+  .statuto-container {
+    padding: 1em 0.5em !important;
+  }
+  
+  .statuto-box {
+    margin: 1em 0 !important;
+    padding: 1.2em !important;
+  }
+}
+
+/* === OTTIMIZZAZIONI ACCESSIBILITÀ MOBILE === */
+@media (max-width: 768px) {
+  /* Migliora contrasto su schermi piccoli */
+  .button {
+    font-weight: 600 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3) !important;
+  }
+  
+  /* Aumenta dimensioni testo per leggibilità */
+  .custom-box p {
+    font-size: 1.1em !important;
+    line-height: 1.7 !important;
+  }
+  
+  /* Migliora spaziature per lettura */
+  h2, h3, h4 {
+    margin: 1.2em 0 0.8em 0 !important;
+    line-height: 1.3 !important;
+  }
+  
+  p {
+    margin-bottom: 1em !important;
+  }
+}
+
+/* === OTTIMIZZAZIONI ORIENTAMENTO === */
+@media (orientation: portrait) and (max-width: 768px) {
+  /* Dispositivi in orientamento verticale */
+  .page-wrapper {
+    padding-bottom: 160px !important;
+  }
+  
+  .mobile-menu.open {
+    width: 75vw !important;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 768px) {
+  /* Dispositivi in orientamento orizzontale */
+  .page-wrapper {
+    padding-bottom: 120px !important;
+  }
+  
+  .mobile-menu.open {
+    width: 50vw !important;
+    max-width: 250px !important;
+  }
+}
+
+/* === FIX SPECIFICI PER BROWSER MOBILE === */
+
+/* Fix per Safari iOS */
+@supports (-webkit-touch-callout: none) {
+  .button, button {
+    -webkit-appearance: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"] {
+    -webkit-appearance: none !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Fix per Chrome mobile */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .button, button {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+}
+
+/* === OTTIMIZZAZIONI FINALI === */
+@media (max-width: 768px) {
+  /* Assicura che tutto sia responsive */
+  * {
+    box-sizing: border-box !important;
+  }
+  
+  /* Migliora scrolling su mobile */
+  body {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Ottimizza immagini per mobile */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+  
+  /* Migliora layout generale */
+  .container, .wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 1em !important;
+    margin: 0 auto !important;
+  }
+}
